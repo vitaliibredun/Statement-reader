@@ -1,66 +1,31 @@
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        MonthlyReport monthlyReport = null;
-        YearlyReport yearlyReport = null;
+        Manager manager = new Manager();
 
         while (true) {
             printMenu();
             int userInput = scanner.nextInt();
 
             if (userInput == 1) {
-                monthlyReport = FileMonthProcess.constractReport();
+                manager.readFileMonthReport();
                 System.out.println("Месячные отчёты загружены");
 
             } else if (userInput == 2) {
-                yearlyReport = FileYearProcess.constractReport();
+                manager.readFileYearlyReport();
                 System.out.println("Годовой отчёт загружен");
 
             } else if (userInput == 3) {
-                // try / catch ещё не проходили, но решил попробовать
-                try {
-                    if (FileMonthProcess.constractReport() != null && FileYearProcess.constractReport() != null) {
-
-                        if (yearlyReport.checkJanuaryProfit() != monthlyReport.januaryProfit()) {
-                            System.out.println("Обнаружено несоответствие данных: категория доходы, месяц январь");
-                        }
-                        if (yearlyReport.checkFebruaryProfit() != monthlyReport.februaryProfit()) {
-                            System.out.println("Обнаружено несоответствие данных: категория доходы, месяц февраль");
-                        }
-                        if (yearlyReport.checkMarchProfit() != monthlyReport.marchProfit()) {
-                            System.out.println("Обнаружено несоответствие данных: категория доходы, месяц март");
-                        }
-                        if (yearlyReport.checkJanuaryCosts() != monthlyReport.januaryCosts()) {
-                            System.out.println("Обнаружено несоответствие данных: категория расходы, месяц январь");
-                        }
-                        if (yearlyReport.checkFebruaryCosts() != monthlyReport.februaryCosts()) {
-                            System.out.println("Обнаружено несоответствие данных: категория расходы, месяц февраль");
-                        }
-                        if (yearlyReport.checkMarchCosts() != monthlyReport.marchCosts()) {
-                            System.out.println("Обнаружено несоответствие данных: категория расходы, месяц март");
-                        }
-                        System.out.println("Ошибок не обнаружено, данные по отчётам верны");
-                    }
-
-                } catch (NullPointerException exp) {
-                    System.out.println("Отчёты не загружены, загрузите отчёты командами 1 и 2");
-                }
+                manager.checkReports();
 
             } else if (userInput == 4) {
-                monthlyReport.printJanuaryReport();
-                monthlyReport.printJanuaryMaxCosts();
-                monthlyReport.printFebruaryReport();
-                monthlyReport.printFebruaryMaxCosts();
-                monthlyReport.printMarchReport();
-                monthlyReport.printMarchMaxCosts();
+                manager.printMonthlyReport();
 
             } else if (userInput == 5) {
-                yearlyReport.printYearlyProfitByMonth();
-                yearlyReport.printYearlyAverageCosts();
-                yearlyReport.printYearlyAverageProfit();
+                manager.printYearlyReport();
 
             } else if (userInput == 0) {
                 System.out.println("Выход из программы");
