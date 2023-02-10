@@ -3,8 +3,8 @@
 Basic backend for application of reading accounting statements. 
   
 ## Features:	
--	Goal setting
--	Showing statistics
+-	Reading CSV
+-	Checking data from accounting statements
 
 ## Technologies
 * Java standart libraries
@@ -20,4 +20,4 @@ To get started with this project, you will need to have the following installed 
 
 To build and run the project, follow these steps:
 
-* Clone the repository: `git clone https://github.com/vitaliibredun/StepTracker.git`
+* Clone the repository: `git clone https://github.com/vitaliibredun/Statement-reader.git`
